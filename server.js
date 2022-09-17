@@ -89,6 +89,6 @@ app.get("/video", function (req, res) {
 
 // }) 
 // });
-server.listen(4000,()=>{
+server.listen(port,()=>{
   console.log("server started");
 }) // Run the server on the 4000 port

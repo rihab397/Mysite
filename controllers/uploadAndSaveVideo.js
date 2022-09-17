@@ -61,10 +61,18 @@ var saveVideo = async (req, res) => {
         console.log("video arrived")
         if (preExist.length) {
             let id= await uploadFile(req.body.fileName);
-            await uploadAndSaveVideoModel.findOneAndUpdate({ userName: req.body.userName }, { $push: { videosName: { fileName: id } } });
-            fs.unlink(dir+req.body.fileName, (e,s)=>{
-                console.log(e,s)
-            })
+            // setTimeout(async () => {
+                if(id){
+                    await uploadAndSaveVideoModel.findOneAndUpdate({ userName: req.body.userName }, { $push: { videosName: { fileName: id } } });
+                    fs.unlink(dir+req.body.fileName, (e,s)=>{
+                        console.log(e,s)
+                    })
+                }
+               
+            // },5000,id);
+
+            res.send({ message: "file susseccfully uploaded" })
+         
             //  req.files.avtar;  
         }
         else {
@@ -76,7 +84,7 @@ var saveVideo = async (req, res) => {
                 console.log(e,s)
             }) 
         }
-        res.send({ message: "file susseccfully uploaded" })
+       
     }
     catch (er) {
 
@@ -89,6 +97,7 @@ var saveVideo = async (req, res) => {
 }
 var removeVideo = async (req, res) => {
     try {
+        await drive.files.delete({fileId:req.query.fileName})
         await uploadAndSaveVideoModel.findOneAndUpdate({ userName: req.query.userName }, { $pull: { 'videosName': { fileName: `${req.query.fileName}` } } });
         //  req.files.avtar;  
         res.send("delete successfully")

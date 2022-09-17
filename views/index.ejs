@@ -148,20 +148,7 @@
       document.getElementById('viewframe').style="background-color: transparent;color:black;";
       document.getElementById('uploadframe').style="background-color: blue;color:white;"
       }
-      
-
-
-      // function videoframe(filename){
-      //   videoFileName=filename;
-      //   var frame=document.getElementById('videoframe');
-      //   frame.innerHTML=`      
-      //  <video id="videoPlayer" width="625" controls muted="muted" autoplay>
-      //  <source src='/videog/${filename}' type="video/mp4" />
-      //  </video>`;
-      // }
-
-
-
+    
       
   function videoframe(filename) {
     videoFileName = filename;
@@ -199,23 +186,28 @@
       }
 
     function onFileClick(filename) {
-        let fileName =filename;
-        axios.get("/download",
-            {
-                params: {
-                    fileName: fileName
-                },
-                responseType: 'arraybuffer'
-            }).then(res => { // then print response status
-                var blob = new Blob([res.data]);
-                var url = URL.createObjectURL(blob);
-                var a = document.createElement("a");
-                document.body.appendChild(a);
-                a.href = url;
-                a.download = fileName;
+        // let fileName =filename;
+        // axios.get("/download",
+        //     {
+        //         params: {
+        //             fileName: fileName
+        //         },
+        //         responseType: 'arraybuffer'
+        //     }).then(res => { // then print response status
+        //         var blob = new Blob([res.data]);
+        //         var url = URL.createObjectURL(blob);
+        //         var a = document.createElement("a");
+        //         document.body.appendChild(a);
+        //         a.href = url;
+        //         a.download = fileName;
+        //         a.click();
+        //         window.URL.revokeObjectURL(url);
+        //     });
+        let href=`https://drive.google.com/uc?id=${filename}&export=download`
+        var a = document.createElement("a");
+        document.body.appendChild(a);
+                a.href = href;
                 a.click();
-                window.URL.revokeObjectURL(url);
-            });
            
     }
     viewframe();

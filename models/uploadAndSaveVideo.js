@@ -1,5 +1,5 @@
 require('dotenv').config();
-var url=process.env.url2;
+var url=process.env.url3;
 var mongoose=require("mongoose");
 mongoose.connect(url,{
     useNewUrlParser: true 
