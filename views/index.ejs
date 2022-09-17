@@ -151,14 +151,31 @@
       
 
 
-      function videoframe(filename){
-        videoFileName=filename;
-        var frame=document.getElementById('videoframe');
-        frame.innerHTML=`      
+      // function videoframe(filename){
+      //   videoFileName=filename;
+      //   var frame=document.getElementById('videoframe');
+      //   frame.innerHTML=`      
+      //  <video id="videoPlayer" width="625" controls muted="muted" autoplay>
+      //  <source src='/videog/${filename}' type="video/mp4" />
+      //  </video>`;
+      // }
+
+
+
+      
+  function videoframe(filename) {
+    videoFileName = filename;
+    // https://drive.google.com/file/d/1Wq0CWIMwtgsUwxfcRKwTGJPl9JUwI5ch/view?usp=sharing
+    var frame = document.getElementById('videoframe');
+   let fName="1Wq0CWIMwtgsUwxfcRKwTGJPl9JUwI5ch";
+     let link=`https://drive.google.com/uc?id=${filename}&export=view`
+    frame.innerHTML = `      
        <video id="videoPlayer" width="625" controls muted="muted" autoplay>
-       <source src='/videog/${filename}' type="video/mp4" />
+       <source src='${link}' type="video/mp4" />
        </video>`;
-      }
+
+      //  <source src='/videog/${filename}' type="video/mp4" />
+  }
 
      
       function onFileDelete(filename) {
